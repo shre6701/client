@@ -1,8 +1,37 @@
 import "./featured.scss";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 export default function Featured({type}) {
+
+  const [content, setContent] = useState({})
+
+  useEffect(() => {
+    
+    const getRandomContent = async () => {
+
+      try {
+        const res = await axios.get(
+          `http://localhost:8800/api/movies/random?type${type}`,
+          {
+            headers: {
+              token:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4Nzc2NzYyMiwiZXhwIjoxNjg5OTI3NjIyfQ.YQvb6kUzId3zWyYgVv2mJCDu_Sz8HHPoqUOZWzB9qXM",
+            },
+          }
+        );
+        setContent(res.data[0]);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    getRandomContent();
+  }, [type])
+  
+
   return (
     <div className="featured">
     {type && (
@@ -29,19 +58,16 @@ export default function Featured({type}) {
 
     )}
       <img
-        src="https://images.pexels.com/photos/16013682/pexels-photo-16013682/free-photo-of-shopla.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        src={content.img}
         alt=""
       />
       <div className="info">
         <img 
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVgmYKZ3T26ixp91WXxdpJAfxgYeD12Y4D8tH7_6za&s" 
+        src={content.imgTitle}
         alt="" 
         />
         <span className="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-          molestias eaque quis cumque, dicta mollitia cupiditate maiores velit
-          vel doloribus impedit molestiae quidem libero exercitationem qui amet
-          unde accusantium soluta.
+          {content.desc}
         </span>
         <div className="buttons">
             <button className="play">

@@ -4,8 +4,9 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const Watch = () => {
   const location = useLocation();
-  console.log(location);
-  const movie = location;
+    console.log(location, " useLocation Hook");
+
+    const data = location.state.movie;
   return (
     <div className="watch">
     <Link to="/">
@@ -15,7 +16,7 @@ const Watch = () => {
       </div>
       </Link>
       <video
-        src={movie.video}
+        src={data ? data.video : "No Video"}
         className="video"
         autoPlay
         progress="true"
