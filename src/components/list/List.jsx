@@ -13,19 +13,19 @@ const List = ({ list }) => {
   const handleClick = (direction) => {
     setIsMoved(true);
 
-  let distance = listRef.current.getBoundingClientRect().x - 50;
+    let distance = listRef.current.getBoundingClientRect().x - 50;
 
-  if (direction === "left" && slideNumber > 0) {
-    setSlideNumber(slideNumber - 1);
-    let newLeft = 230 + distance;
-    listRef.current.style.transform = `translateX(${newLeft}px)`;
-  }
+    if (direction === "left" && slideNumber > 0) {
+      setSlideNumber(slideNumber - 1);
+      let newLeft = 230 + distance;
+      listRef.current.style.transform = `translateX(${newLeft}px)`;
+    }
 
-  if (direction === "right" && slideNumber < 3) {
-    setSlideNumber(slideNumber + 1);
-    let newLeft = -230 + distance;
-    listRef.current.style.transform = `translateX(${newLeft}px)`;
-  }
+    if (direction === "right" && slideNumber < 3) {
+      setSlideNumber(slideNumber + 1);
+      let newLeft = -230 + distance;
+      listRef.current.style.transform = `translateX(${newLeft}px)`;
+    }
   };
 
   return (
@@ -39,7 +39,7 @@ const List = ({ list }) => {
         />
         <div className="container" ref={listRef}>
           {list.content.map((item) => (
-            <ListItem key={item.id} index={item.id} item={item} />
+            <ListItem key={item._id} index={item._id} item={item} />
           ))}
         </div>
         <ArrowForwardIosOutlinedIcon

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-export default function Featured({type}) {
+export default function Featured({type, setGenre}) {
 
   const [content, setContent] = useState({})
 
@@ -19,7 +19,7 @@ export default function Featured({type}) {
           {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4Nzc2NzYyMiwiZXhwIjoxNjg5OTI3NjIyfQ.YQvb6kUzId3zWyYgVv2mJCDu_Sz8HHPoqUOZWzB9qXM",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDI4ODk4MSwiZXhwIjoxNjkyNDQ4OTgxfQ.p97iM7kcfxs8ySZQSTr8NWtJM4BF87CIcuVxga_G8wQ",
             },
           }
         );
@@ -38,7 +38,7 @@ export default function Featured({type}) {
         
         <div className="category">
             <span>{type === "movies"? "Movies" : "Series"}</span>
-            <select name="genre" id="genre">
+            <select name="genre" id="genre" onChange={e=>setGenre(e.target.value)}>
             <option>Genre</option>
                 <option value="adventure">Adventure</option>
                 <option value="comedy">Comedy</option>

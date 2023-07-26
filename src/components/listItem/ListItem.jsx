@@ -19,7 +19,7 @@ const ListItem = ({ index, item }) => {
           {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4Nzc2NzYyMiwiZXhwIjoxNjg5OTI3NjIyfQ.YQvb6kUzId3zWyYgVv2mJCDu_Sz8HHPoqUOZWzB9qXM",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDI4ODk4MSwiZXhwIjoxNjkyNDQ4OTgxfQ.p97iM7kcfxs8ySZQSTr8NWtJM4BF87CIcuVxga_G8wQ",
             },
           }
         );
@@ -33,15 +33,20 @@ const ListItem = ({ index, item }) => {
   }, [item]);
 
   return (
-    <Link to="/watch" state={{ movie:movie }}>
+    <Link to="/watch" state={{ movie: movie }} key={item}>
       <div
         className="listItem"
-        style={{ left: isHovered ? index * 225 - 50 + index * 2.5 : undefined }}
+        style={{
+          left:
+            isHovered && typeof index === "number"
+              ? index * 225 - 50 + index * 2.5
+              : undefined,
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img src={movie.img} alt="" />
-        {isHovered && (
+        {movie.img && <img src={movie.img} alt="" />}
+        {isHovered && movie.trailer && (
           <>
             <video src={movie.trailer} autoPlay loop />
             <div className="itemInfo">

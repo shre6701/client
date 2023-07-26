@@ -19,13 +19,12 @@ const Home = ({ type }) => {
           {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4Nzc2NzYyMiwiZXhwIjoxNjg5OTI3NjIyfQ.YQvb6kUzId3zWyYgVv2mJCDu_Sz8HHPoqUOZWzB9qXM",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OTU3ODgxZGQ3Y2Y0YWY0MjMyOTk4NSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDI4ODk4MSwiZXhwIjoxNjkyNDQ4OTgxfQ.p97iM7kcfxs8ySZQSTr8NWtJM4BF87CIcuVxga_G8wQ",
             },
           }
         );
-       
-        setLists(res.data)
-        
+
+        setLists(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -36,12 +35,10 @@ const Home = ({ type }) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured type={type} />
+      <Featured type={type} setGenre={setGenre} />
       {lists.map((list) => (
-        <List list={list}/>
+        <List key={list._id} list={list} />
       ))}
-      
-      
     </div>
   );
 };
