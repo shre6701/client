@@ -30,13 +30,13 @@ const Navbar = () => {
           <span>Home</span>
           </Link>
           <Link to="/series" className="link">
-          <span>Series</span>
+          <span className="navbarMainLinks">Series</span>
           </Link>
           <Link to="/movies" className="link">
-          <span>Movies</span>
+          <span className="navbarMainLinks">Movies</span>
           </Link>    
-          <span>New and Popular</span>
-          <span>My List</span>
+          <span className="navbarMainLinks">New and Popular</span>
+          <span className="navbarMainLinks">My List</span>
         </div>
         <div className="right">
           <SearchIcon className="icon"/>
