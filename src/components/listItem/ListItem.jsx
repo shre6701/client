@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 
 const ListItem = ({ index, item }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null); // Initialize movie state with null
 
   useEffect(() => {
     const getMovie = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8800/api/movies/find/" + item,
+          `http://localhost:8800/api/movies/find/${item}`,
           {
             headers: {
               token:
@@ -32,6 +32,11 @@ const ListItem = ({ index, item }) => {
     getMovie();
   }, [item]);
 
+  // Check if movie is still loading
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Link to="/watch" state={{ movie: movie }} key={item}>
       <div
@@ -45,7 +50,8 @@ const ListItem = ({ index, item }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {movie.img && <img src={movie.img} alt="" />}
+        {/* Check if movie.img is available */}
+        {movie.img ? <img src={movie.img} alt="" /> : <div>No Image Available</div>}
         {isHovered && movie.trailer && (
           <>
             <video src={movie.trailer} autoPlay loop />

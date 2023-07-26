@@ -3,6 +3,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Watch from "../../pages/watch/Watch";
 
 
 export default function Featured({type, setGenre}) {
@@ -30,6 +31,10 @@ export default function Featured({type, setGenre}) {
     };
     getRandomContent();
   }, [type])
+
+  const handleClick =() =>{
+    <Watch/>
+  }
   
 
   return (
@@ -63,7 +68,7 @@ export default function Featured({type, setGenre}) {
       />
       <div className="info">
         <img 
-        src={content.imgTitle}
+        // src={content.imgTitle}
         alt="" 
         />
         <span className="desc">
@@ -72,7 +77,7 @@ export default function Featured({type, setGenre}) {
         <div className="buttons">
             <button className="play">
                 <PlayArrowIcon/>
-                <span>Play</span>
+                <span onClick={handleClick}>Play</span>
             </button>
             <button className="more">
                 <InfoOutlinedIcon/>
